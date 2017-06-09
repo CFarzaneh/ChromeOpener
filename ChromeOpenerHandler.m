@@ -14,16 +14,16 @@
 }
 
 - (id)openURL:(NSURL *)url sender:(NSString *)sender {
-	// if ([url.scheme isEqualToString:@"http"]) {
-	// 	NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
-	// 	components.scheme = inUseSecure ? @"http" : @"googlechrome";
-	// 	return components.URL;
-	// }
-
-	if ([url.host isEqualToString:@"hbang.ws"]) {
-		return [NSURL URLWithString:[NSString stringWithFormat:@"hbang://open%@", url.path]];
+	if ([url.scheme isEqualToString:@"http"]) {
+		NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+		components.scheme = @"googlechrome";
+		return components.URL;
+	} 
+	else if ([url.scheme isEqualToString:@"https"]) {
+		NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+		components.scheme = @"googlechromes";
+		return components.URL;
 	}
-
 	return nil;
 }
 
